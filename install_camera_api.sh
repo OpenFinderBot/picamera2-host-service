@@ -20,6 +20,8 @@ sudo python3 install.py
 cd $WORKING_DIR
 
 # Install Python dependencies
+python3 -m venv ~/camera_api_venv
+source ~/camera_api_venv/bin/activate
 pip3 install -r $WORKING_DIR/dependencies.txt
 
 # Create the systemd service file with the specified user and working directory
@@ -31,7 +33,7 @@ After=network.target
 [Service]
 User=$USER_NAME
 WorkingDirectory=$WORKING_DIR
-ExecStart=/usr/bin/env uvicorn camera_api_service:app --host 0.0.0.0 --port 8000
+ExecStart=/home/$USER_NAME/camera_api_venv/bin/uvicorn camera_api_service:app --host 0.0.0.0 --port 8000
 Restart=always
 
 [Install]
