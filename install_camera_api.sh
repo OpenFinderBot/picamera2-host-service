@@ -15,13 +15,13 @@ WORKING_DIR="$(pwd)"
 cd ~/
 git clone -b picamera2 https://github.com/sunfounder/vilib.git
 cd vilib
+python3 -m venv ~/camera_api_venv
+source ~/camera_api_venv/bin/activate
 sudo python3 install.py
 
 cd $WORKING_DIR
 
 # Install Python dependencies
-python3 -m venv ~/camera_api_venv
-source ~/camera_api_venv/bin/activate
 pip3 install -r $WORKING_DIR/dependencies.txt
 
 # Create the systemd service file with the specified user and working directory
